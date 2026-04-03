@@ -65,3 +65,15 @@ fs.readdir('Backend', function (err, files) {
 // it manages everything from receiving the request to sending the response.
 
 
+const express = require("express");
+const app = express();
+
+app.get("/", function (req, res) {
+    res.send("champion hu ma")
+})
+
+app.get("/profile", function (req, res) {
+    res.send("coach hu ma")
+})
+
+app.listen(3000);
