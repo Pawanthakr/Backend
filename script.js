@@ -30,7 +30,7 @@ fs.rmdir('./copy', function (err) {
     if (err) console.error(err);
     else console.log('Directory deleted successfully!')
 });
-it remove the file but if the file is not empty it will throw an error so we can use fs.rm also to remove the directory and all its contents
+// it remove the file but if the file is not empty it will throw an error so we can use fs.rm also to remove the directory and all its contents
 fs.rm('./copy', { recursive: true }, function (err) {
     if (err) console.error(err);
     else console.log('Directory and its contents deleted successfully!')
