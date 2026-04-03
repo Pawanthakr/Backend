@@ -47,7 +47,21 @@ fs.mkdir('./new_directory', { recursive: true }, function (err) {
     else console.log('Directory created successfully!');
 });
 
-fs.readdir('./Backend/hello.txt', "utf8", function (err, files) {
+fs.readdir('Backend', function (err, files) {
     if (err) console.error(err.message);
     else console.log(files);
 });
+
+
+
+// nodejs core ma jo installe ata hai wo khelaate hai module.
+// npm se donlowad krte hai usa package kehta hai.
+
+// dependency --> package and package ke dependency
+// dev dependency --> package that is only needed for development and not for production. like nodemon, eslint etc.
+
+// express js is a npm package.
+// it is a framework.
+// it manages everything from receiving the request to sending the response.
+
+
