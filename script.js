@@ -1,56 +1,56 @@
 // nodejs is a js runtime environment that allows us to run js code outside the browser.
-const fs = require('node:fs');
+// const fs = require('node:fs');
 
-fs.writeFile('hello.txt', 'hello kase ho ', function (err) {
-    if (err) console.error(err);
-    else console.log('File created successfully!');
-});
+// fs.writeFile('hello.txt', 'hello kase ho ', function (err) {
+//     if (err) console.error(err);
+//     else console.log('File created successfully!');
+// });
 
-fs.appendFile('hello.txt', 'ma badiya hu', function (err) {
-    if (err) console.error(err);
-    else console.log('File append successfully!');
-});
+// fs.appendFile('hello.txt', 'ma badiya hu', function (err) {
+//     if (err) console.error(err);
+//     else console.log('File append successfully!');
+// });
 
-fs.rename('hello.txt', 'greet.txt', function (err) {
-    if (err) console.error(err);
-    else console.log('File renamed successfully!')
-});
+// fs.rename('hello.txt', 'greet.txt', function (err) {
+//     if (err) console.error(err);
+//     else console.log('File renamed successfully!')
+// });
 
-fs.copyFile('greet.txt', './copy/greet_copy.txt', function (err) {
-    if (err) console.error(err);
-    else console.log('File copied successfully!')
-});
+// fs.copyFile('greet.txt', './copy/greet_copy.txt', function (err) {
+//     if (err) console.error(err);
+//     else console.log('File copied successfully!')
+// });
 
-fs.unlink('greet.txt', function (err) {
-    if (err) console.error(err);
-    else console.log('File deleted successfully!')
-});
+// fs.unlink('greet.txt', function (err) {
+//     if (err) console.error(err);
+//     else console.log('File deleted successfully!')
+// });
 
-fs.rmdir('./copy', function (err) {
-    if (err) console.error(err);
-    else console.log('Directory deleted successfully!')
-});
-// it remove the file but if the file is not empty it will throw an error so we can use fs.rm also to remove the directory and all its contents
-fs.rm('./copy', { recursive: true }, function (err) {
-    if (err) console.error(err);
-    else console.log('Directory and its contents deleted successfully!')
-});
+// fs.rmdir('./copy', function (err) {
+//     if (err) console.error(err);
+//     else console.log('Directory deleted successfully!')
+// });
+// // it remove the file but if the file is not empty it will throw an error so we can use fs.rm also to remove the directory and all its contents
+// fs.rm('./copy', { recursive: true }, function (err) {
+//     if (err) console.error(err);
+//     else console.log('Directory and its contents deleted successfully!')
+// });
 
-fs.readFile('greet.txt', "utf8", function (err, data) {
-    if (err) console.error(err);
-    else console.log(data);
-});
+// fs.readFile('greet.txt', "utf8", function (err, data) {
+//     if (err) console.error(err);
+//     else console.log(data);
+// });
 
 
-fs.mkdir('./new_directory', { recursive: true }, function (err) {
-    if (err) console.error(err);
-    else console.log('Directory created successfully!');
-});
+// fs.mkdir('./new_directory', { recursive: true }, function (err) {
+//     if (err) console.error(err);
+//     else console.log('Directory created successfully!');
+// });
 
-fs.readdir('Backend', function (err, files) {
-    if (err) console.error(err.message);
-    else console.log(files);
-});
+// fs.readdir('Backend', function (err, files) {
+//     if (err) console.error(err.message);
+//     else console.log(files);
+// });
 
 
 
@@ -65,15 +65,60 @@ fs.readdir('Backend', function (err, files) {
 // it manages everything from receiving the request to sending the response.
 
 
+// const express = require("express");
+// const app = express();
+// app.use(function (req, res, next) {
+//     console.log("middleware chala");
+//     next();
+// });
+// app.get("/", function (req, res) {
+//     res.send("champion hu ma")
+// });
+
+// app.get("/profile", function (req, res, next) {
+//     return next(new Error("profile page is under construction"));
+// });
+
+// error handling middleware-> it is a middleware that is used to handle errors. it takes four arguments, err, req, res, next. it is used to handle errors that occur in the application. it is defined after all the routes and other middleware. it is used to catch errors that occur in the application and send a response to the client. it is also used to log errors and perform other error handling tasks. 
+
+// app.use(function (err, req, res, next) {
+//     console.error(err.stack);
+//     res.status(500).send("Something broke!");
+// });
+
+// app.listen(3000);
+
+
+// middleware-> ya request or router ke beach me aata hai. ya hm kch bhi deatil print kra skte hai ya kch bhi kr skte hai. jaise ki authentication, logging, error handling etc. 
+
+// session-> ya ek aisa mechanism hai jisme hum user ke data ko server side par store krte hai. jab user login krta hai to uska data session me store ho jata hai aur jab user logout krta hai to uska data session se delete ho jata hai. session me data store krne ke liye hum express-session package ka use krte hai.
+
+// cookie-> ya ek aisa mechanism hai jisme hum user ke data ko client side par store krte hai. jab user login krta hai to uska data ka sath ek sring bhejta ha jissa servee ko pta rheta hai ki ap ho kon jb tk vo string hai string remove then dubara login krna padega.
+
+
+
 const express = require("express");
 const app = express();
+const Path = require("path");
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(Path.join(__dirname, "public")));
+app.set("view engine", "ejs");
 
 app.get("/", function (req, res) {
-    res.send("champion hu ma")
-})
+    res.render("index");
+});
 
-app.get("/profile", function (req, res) {
-    res.send("coach hu ma")
-})
+// dynamic route
+app.get("/profile/:username", function (req, res) {
+    res.send(`Welcome,${req.params.username}`);
+});
 
-app.listen(3000);
+app.get("/profile/:username/:age", function (req, res) {
+    res.send(`Welcome, ${req.params.username} of age ${req.params.age}`);
+});
+
+app.listen(3001, function () {
+    console.log("Server is running on port 3001");
+});
