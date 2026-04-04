@@ -1,9 +1,45 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-html,body{
-    width: 100%;
-    height: 100%;
+html,
+body {
+  color: white;
+  width: 100%;
+  height: 100%;
+  background-color: gray;
+}
+form {
+  padding-left: 10px;
+}
+
+.block {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
+  width: 100%;
+  height: 100%;
+  resize: none;
+}
+
+.button {
+  border: 1px solid whitesmoke;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 5px;
+  background-color: olivedrab;
+}
+.tasks {
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.task {
+  border-radius: 10px;
+  padding: 10px;
+  margin-right: 50px;
+  background-color: black;
 }

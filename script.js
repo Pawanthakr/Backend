@@ -97,28 +97,59 @@
 
 
 
+// const express = require("express");
+// const app = express();
+// const Path = require("path");
+
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
+// app.use(express.static(Path.join(__dirname, "public")));
+// app.set("view engine", "ejs");
+
+// app.get("/", function (req, res) {
+//     res.render("index");
+// });
+
+// // dynamic route
+// app.get("/profile/:username", function (req, res) {
+//     res.send(`Welcome ${req.params.username}`);
+// });
+
+// app.get("/profile/:username/:age", function (req, res) {
+//     res.send(`Welcome ${req.params.username} of age ${req.params.age}`);
+// });
+
+// app.listen(3001, function () {
+//     console.log("Server is running on port 3001");
+// });
+
+
+
+
+
 const express = require("express");
 const app = express();
 const Path = require("path");
+const fs = require('node:fs');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(Path.join(__dirname, "public")));
 app.set("view engine", "ejs");
 
+
+
 app.get("/", function (req, res) {
     res.render("index");
-});
+})
 
-// dynamic route
-app.get("/profile/:username", function (req, res) {
-    res.send(`Welcome,${req.params.username}`);
-});
+app.post("/create", function (req, res) {
+    fs.writeFile(`/files/${req.body.title.split(' ').join('')}.txt`, req.body.details, function (err) {
+        res.redirect("/");
+    })
 
-app.get("/profile/:username/:age", function (req, res) {
-    res.send(`Welcome, ${req.params.username} of age ${req.params.age}`);
-});
+})
 
 app.listen(3001, function () {
     console.log("Server is running on port 3001");
-});
+})

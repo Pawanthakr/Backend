@@ -4,10 +4,42 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <body>
-    <h1>Welcome to My App<%= 2 + 2 %></h1>
-    <script src="script.js"></script>
+    <div class="main">
+      <div class="form">
+        <form action="/create" method="post">
+          <input
+            class="block"
+            type="text"
+            placeholder="Title goes here"
+            name="title"
+          />
+          <textarea
+            class="block"
+            placeholder="write your task here"
+            name="details"
+          ></textarea>
+          <input class="button" type="submit" value="create Task" />
+        </form>
+        <div class="tasks">
+          <div class="task">
+            <h1 class="tasktitle">some task title</h1>
+            <a class="readtask" href="">read more</a>
+          </div>
+          <div class="task">
+            <h1 class="tasktitle">some task title</h1>
+            <a class="readtask" href="">read more</a>
+          </div>
+          <div class="task">
+            <h1 class="tasktitle">some task title</h1>
+            <a class="readtask" href="">read more</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/javascripts/script.js"></script>
   </body>
 </html>
