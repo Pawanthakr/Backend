@@ -43,3 +43,39 @@ form {
   margin-right: 50px;
   background-color: black;
 }
+.links,
+.readtask {
+  display: flex;
+  justify-content: space-between;
+  color: cornflowerblue;
+}
+form1 {
+  padding-left: 10px;
+}
+a {
+  color: whitesmoke;
+}
+.a {
+  padding: 10px;
+  margin: 10px;
+  width: 10%;
+  border-radius: 10px;
+  background-color: black;
+}
+.block1 {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
+  width: 25%;
+  height: 25%;
+  resize: none;
+}
+
+.button1 {
+  border: 1px solid whitesmoke;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 5px;
+  background-color: yellow;
+}
