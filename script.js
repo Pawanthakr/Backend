@@ -30,7 +30,7 @@
 //     if (err) console.error(err);
 //     else console.log('Directory deleted successfully!')
 // });
-// // it remove the file but if the file is not empty it will throw an error so we can use fs.rm also to remove the directory and all its contents
+// it remove the file but if the file is not empty it will throw an error so we can use fs.rm also to remove the directory and all its contents
 // fs.rm('./copy', { recursive: true }, function (err) {
 //     if (err) console.error(err);
 //     else console.log('Directory and its contents deleted successfully!')
@@ -110,7 +110,7 @@
 //     res.render("index");
 // });
 
-// // dynamic route
+// dynamic route
 // app.get("/profile/:username", function (req, res) {
 //     res.send(`Welcome ${req.params.username}`);
 // });
@@ -127,46 +127,83 @@
 
 
 
+// const express = require("express");
+// const app = express();
+// const Path = require("path");
+// const fs = require('node:fs');
+
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
+// app.use(express.static(Path.join(__dirname, "public")));
+// app.set("view engine", "ejs");
+
+
+// app.get("/", function (req, res) {
+//     fs.readdir('./files', function (err, files) {
+//         res.render("index", { files: files });
+//     })
+// })
+
+// app.post("/create", function (req, res) {
+//     fs.writeFile(`./files/${req.body.title.split(' ').join('')}.txt`, req.body.details, function (err) {
+//         res.redirect("/");
+//     })
+// })
+
+// app.get("/file/:filename", function (req, res) {
+//     fs.readFile(`./files/${req.params.filename}`, "utf8", function (err, data) {
+//         res.render("file", { title: req.params.filename, details: data });
+//     })
+// })
+
+// app.get("/edit/:filename", function (req, res) {
+//     res.render("edit", { filename: req.params.filename });
+
+// })
+
+// app.post("/edit", function (req, res) {
+//     fs.rename(`./files/${req.body.previous}`, `./files/${req.body.new}`, function (err) {
+//         res.redirect("/");
+//     })
+// })
+
+// app.listen(3001, function () {
+//     console.log("Server is running on port 3001");
+// })
+
+
 const express = require("express");
 const app = express();
-const Path = require("path");
-const fs = require('node:fs');
+const userModel = require("./usermodel");
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static(Path.join(__dirname, "public")));
-app.set("view engine", "ejs");
+app.get("/", (req, res) => {
+    res.send("hey")
+})
 
-
-app.get("/", function (req, res) {
-    fs.readdir('./files', function (err, files) {
-        res.render("index", { files: files });
+app.get("/create", async (req, res) => {
+    let createduser = await userModel.create({
+        name: "kunal",
+        username: "kunal12j",
+        email: "kunalthakre12j@gmail.com"
     })
+    res.send(createduser);
 })
 
-app.post("/create", function (req, res) {
-    fs.writeFile(`./files/${req.body.title.split(' ').join('')}.txt`, req.body.details, function (err) {
-        res.redirect("/");
-    })
+app.get("/read", async (req, res) => {
+    let users = await userModel.find()
+    res.send(users);
 })
 
-app.get("/file/:filename", function (req, res) {
-    fs.readFile(`./files/${req.params.filename}`, "utf8", function (err, data) {
-        res.render("file", { title: req.params.filename, details: data });
-    })
+
+app.get("/update", async (req, res) => {
+    let updateduser = await userModel.findOneAndUpdate({ name: "pawanthakre" }, { username: "pawan8n" }, { returnDocument: "after" })
+    res.send(updateduser);
 })
 
-app.get("/edit/:filename", function (req, res) {
-    res.render("edit", { filename: req.params.filename });
 
+app.get("/delete", async (req, res) => {
+    let deleteduser = await userModel.findOneAndDelete({ name: "kunal" })
+    res.send(deleteduser);
 })
 
-app.post("/edit", function (req, res) {
-    fs.rename(`./files/${req.body.previous}`, `./files/${req.body.new}`, function (err) {
-        res.redirect("/");
-    })
-})
-
-app.listen(3001, function () {
-    console.log("Server is running on port 3001");
-})
+app.listen(3000);
