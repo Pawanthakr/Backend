@@ -5,7 +5,7 @@
   "license": "ISC",
   "author": "Pawan thakre",
   "type": "commonjs",
-  "main": "script.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,4 +16,3 @@
     "nodemon": "^3.1.14"
   }
 }
-

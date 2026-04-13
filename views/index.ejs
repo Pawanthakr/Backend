@@ -5,40 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
-    
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   </head>
   <body>
-    <div class="main">
-    <div class="form">
-        <form action="/create" method="post">
-          <input
-            class="block"
-            type="text"
-            placeholder="Title goes here"
-            name="title"
-          />
-          <textarea
-            class="block"
-            placeholder="write your task here"
-            name="details"
-          ></textarea>
-          <input class="button" type="submit" value="create Task"/>
-        </form>
-      </div>
-      <div class="tasks">
-        <% if (files.length > 0) { %>
-           <% files.forEach(function(val) { %>
-              <div class="task">
-                <h1 class="tasktitle"><%= val %></h1>
-                <div class="links">
-                 <a class="readtask" href="/file/<%= val %>">Read more</a>
-                 <a class="readtask" href="/edit/<%= val %>">Edit name</a>
-                </div> 
-              </div>
-            <% }) %> 
-        <% } else { %>  <h1 class="tasktitle">No task found</h1>
-        <% } %>
-      </div>
+    <div class="p-10 w-full h-full bg-zinc-900 text-white">
+      <div><a href="/read">Read user</a></div>
+      <form action="/create" method="post">
+        <h3 class="text-3xl tracking-tighter mb-2">Create user</h3>
+        <input
+          class="px-5 py-2 border-5 border-zinc-800 rounded-lg bg-transparent"
+          type="text"
+          placeholder="Name"
+          name="name"
+        />
+        <input
+          class="px-5 py-2 border-5 border-zinc-800 rounded-lg bg-transparent"
+          type="text"
+          placeholder="Email Address"
+          name="email"
+        />
+        <input
+          class="px-5 py-2 border-5 border-zinc-800 rounded-lg bg-transparent"
+          type="text"
+          placeholder="Image URL"
+          name="image"
+        />
+        <input
+          class="px-5 py-2 ml-3 rounded-lg bg-blue-500"
+          type="submit"
+          value="Create user"
+        />
+      </form>
     </div>
   </body>
 </html>

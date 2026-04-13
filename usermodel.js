@@ -6,8 +6,8 @@ mongoose.connect('mongodb://localhost:27017/mongodbpractice');
 
 const userSchema = mongoose.Schema({
     name: String,
-    username: String,
-    email: String
+    email: String,
+    image: String
 })
 
 

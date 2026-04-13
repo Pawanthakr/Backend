@@ -172,39 +172,39 @@
 // })
 
 
-const express = require("express");
-const app = express();
-const userModel = require("./usermodel");
+// const express = require("express");
+// const app = express();
+// const userModel = require("./usermodel");
 
-app.get("/", (req, res) => {
-    res.send("hey")
-})
+// app.get("/", (req, res) => {
+//     res.send("hey")
+// })
 
-app.get("/create", async (req, res) => {
-    let createduser = await userModel.create({
-        name: "kunal",
-        username: "kunal12j",
-        email: "kunalthakre12j@gmail.com"
-    })
-    res.send(createduser);
-})
+// app.get("/create", async (req, res) => {
+//     let createduser = await userModel.create({
+//         name: "kunal",
+//         username: "kunal12j",
+//         email: "kunalthakre12j@gmail.com"
+//     })
+//     res.send(createduser);
+// })
 
-app.get("/read", async (req, res) => {
-    let users = await userModel.find()
-    res.send(users);
-})
-
-
-app.get("/update", async (req, res) => {
-    let updateduser = await userModel.findOneAndUpdate({ name: "pawanthakre" }, { username: "pawan8n" }, { returnDocument: "after" })
-    res.send(updateduser);
-})
+// app.get("/read", async (req, res) => {
+//     let users = await userModel.find()
+//     res.send(users);
+// })
 
 
-app.get("/delete", async (req, res) => {
-    let deleteduser = await userModel.findOneAndDelete({ name: "kunal" })
-    res.send(deleteduser);
-})
+// app.get("/update", async (req, res) => {
+//     let updateduser = await userModel.findOneAndUpdate({ name: "pawanthakre" }, { username: "pawan8n" }, { returnDocument: "after" })
+//     res.send(updateduser);
+// })
 
 
-app.listen(3000);
+// app.get("/delete", async (req, res) => {
+//     let deleteduser = await userModel.findOneAndDelete({ name: "kunal" })
+//     res.send(deleteduser);
+// })
+
+
+// app.listen(3000);
