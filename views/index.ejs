@@ -3,39 +3,77 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>ZenVibe</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="/stylesheets/addevent.css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   </head>
   <body>
-    <div class="p-10 w-full h-full bg-zinc-900 text-white">
-      <div><a href="/read">Read user</a></div>
-      <form action="/create" method="post">
-        <h3 class="text-3xl tracking-tighter mb-2">Create user</h3>
-        <input
-          class="px-5 py-2 border-5 border-zinc-800 rounded-lg bg-transparent"
-          type="text"
-          placeholder="Name"
-          name="name"
-        />
-        <input
-          class="px-5 py-2 border-5 border-zinc-800 rounded-lg bg-transparent"
-          type="text"
-          placeholder="Email Address"
-          name="email"
-        />
-        <input
-          class="px-5 py-2 border-5 border-zinc-800 rounded-lg bg-transparent"
-          type="text"
-          placeholder="Image URL"
-          name="image"
-        />
-        <input
-          class="px-5 py-2 ml-3 rounded-lg bg-blue-500"
-          type="submit"
-          value="Create user"
-        />
-      </form>
-    </div>
+    <section class="hero">
+      <!-- NAVBAR -->
+
+      <nav>
+        <div class="logo">
+          <div class="logo-box">🎟</div>
+
+          Zen<span>Vibe</span>
+        </div>
+
+        <ul class="nav-links">
+          <li><a href="/">Home</a></li>
+
+          <li><a href="/read">Events</a></li>
+
+          <li><a href="/add">Add Event</a></li>
+
+          <li><a href="/about">About</a></li>
+
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+
+        <div class="nav-buttons">
+          <a href="/login" class="login-btn">Login</a>
+          <a href="/signup" class="signup-btn">Sign Up</a>
+        </div>
+      </nav>
+
+      <!-- HERO CONTENT -->
+
+      <div class="hero-content">
+        <h1>Discover Amazing <span>Events</span></h1>
+
+        <p>
+          Find concerts, workshops, parties and more exciting events happening
+          around you.
+        </p>
+
+        <!-- SEARCH -->
+
+        <div class="search-box">
+          <input type="text" placeholder="Search events..." />
+
+          <button>Search</button>
+        </div>
+
+        <!-- STATS -->
+
+        <div class="stats">
+          <div class="stat">
+            <h2>250+</h2>
+            <p>Events</p>
+          </div>
+
+          <div class="stat">
+            <h2>120+</h2>
+            <p>Locations</p>
+          </div>
+
+          <div class="stat">
+            <h2>5000+</h2>
+            <p>Happy Users</p>
+          </div>
+        </div>
+      </div>
+    </section>
   </body>
 </html>

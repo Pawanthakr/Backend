@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/addevent.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body>
+    <div class="hero">
+      <nav>
+        <div class="logo">
+          <div class="logo-box">🎟</div>
+
+          Zen<span>Vibe</span>
+        </div>
+
+        <ul class="nav-links">
+          <li><a href="/">Home</a></li>
+
+          <li><a href="/read">Events</a></li>
+
+          <li><a href="/add">Add Event</a></li>
+
+          <li><a href="/about">About</a></li>
+
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+
+        <div class="profile">
+          <p>Pawan Thakre</p>
+        </div>
+      </nav>
+    </div>
+    <div class="container">
+      <!-- MAIN -->
+
+      <div class="main">
+        <div class="title">
+          <h1>Add New Event</h1>
+
+          <p>Create a new event</p>
+        </div>
+
+        <!-- FORM -->
+
+        <div class="form-container">
+          <!-- LEFT -->
+
+          <form class="form-card" action="/create" method="post">
+            <h2 class="section-title">Event Details</h2>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Event Title</label>
+
+                <input
+                  type="text"
+                  class="input-box"
+                  id="eventtitle"
+                  placeholder="Enter event title"
+                  name="eventtitle"
+                />
+              </div>
+
+              <div class="form-group">
+                <label>Category</label>
+                <select id="category" name="category">
+                  <option>Select category</option>
+                  <option>Music</option>
+                  <option>Technology</option>
+                  <option>Business</option>
+                  <option>Sports</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Date</label>
+
+                <input
+                  type="text"
+                  class="input-box"
+                  id="date"
+                  placeholder="Enter Date"
+                  name="date"
+                />
+              </div>
+
+              <div class="form-group">
+                <label>Time</label>
+                <input
+                  type="text"
+                  class="input-box"
+                  id="time"
+                  placeholder="Enter Time"
+                  name="time"
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Location</label>
+
+              <input
+                type="text"
+                class="input-box"
+                id="location"
+                placeholder="Enter location"
+                name="location"
+              />
+            </div>
+
+            <div class="form-group">
+              <label>Contact Number</label>
+
+              <input
+                type="number"
+                class="input-box"
+                id="contact"
+                placeholder="Enter contact number"
+                name="contact"
+              />
+            </div>
+
+            <div class="form-group">
+              <label>Description</label>
+
+              <input
+                type="text"
+                class="input-box"
+                placeholder="Enter description about the event"
+                id="description"
+                name="description"
+              />
+            </div>
+
+            <div class="form-group">
+              <label>Event Image</label>
+
+              <input
+                type="url"
+                class="input-box"
+                id="eventimage"
+                placeholder="Enter image URL"
+                name="image"
+                accept="image/*"
+              />
+            </div>
+
+            <button class="submit-btn" id="submit-btn">Create Event</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

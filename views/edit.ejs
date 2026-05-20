@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body>
+    <nav>
+      <div class="logo">
+        <div class="logo-box">🎟</div>
+
+        Zen<span>Vibe</span>
+      </div>
+
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+
+        <li><a href="/read">Events</a></li>
+
+        <li><a href="/add">Add Event</a></li>
+
+        <li><a href="/about">About</a></li>
+
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+
+      <div class="profile">
+        <p>Pawan Thakre</p>
+      </div>
+    </nav>
+    <div class="p-10 w-full h-full text-white">
+      <div><a href="/read">Read Events</a></div>
+      <form action="/update/<%= event._id %>" method="post">
+        <h3 class="text-3xl tracking-tighter mb-2">Update Event</h3>
+        <input
+          class="px-5 py-2 border-5 border-zinc-800 rounded-lg bg-transparent"
+          type="text"
+          placeholder="Event title"
+          name="eventtittle"
+          value="<%= event.eventtittle %>"
+        />
+        <input
+          class="px-5 py-2 border-5 border-zinc-800 rounded-lg bg-transparent"
+          type="text"
+          placeholder="Category"
+          name="category"
+          value="<%= event.category %>"
+        />
+        <input
+          class="px-5 py-2 border-5 border-zinc-800 rounded-lg bg-transparent"
+          type="text"
+          placeholder="Event location"
+          name="location"
+          value="<%= event.location %>"
+        />
+        <input
+          class="px-5 py-2 border-5 border-zinc-800 rounded-lg bg-transparent"
+          type="url"
+          placeholder="Image URL"
+          name="image"
+          value="<%= event.image %>"
+        />
+        <input
+          class="px-5 py-2 border-5 border-zinc-800 rounded-lg bg-transparent"
+          type="text"
+          placeholder="Event date"
+          name="date"
+          value="<%= event.date %>"
+        />
+        <input
+          class="px-5 py-2 border-5 border-zinc-800 rounded-lg bg-transparent"
+          type="text"
+          placeholder="Event time"
+          name="time"
+          value="<%= event.time %>"
+        />
+        <input
+          class="px-5 py-2 border-5 border-zinc-800 rounded-lg bg-transparent"
+          type="number"
+          placeholder="Contact Number"
+          name="contact"
+          value="<%= event.contact %>"
+        />
+        <input
+          class="px-5 py-2 border-5 border-zinc-800 rounded-lg bg-transparent"
+          type="text"
+          placeholder="Event description"
+          name="description"
+          value="<%= event.description %>"
+        />
+        <input
+          class="px-5 py-2 ml-3 rounded-lg bg-yellow-500"
+          type="submit"
+          value="Update event"
+        />
+      </form>
+    </div>
+  </body>
+</html>
