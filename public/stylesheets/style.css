@@ -132,6 +132,15 @@ nav {
 
 /* SEARCH */
 
+.search {
+  background: linear-gradient(to right, #7c3aed, #9333ea);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  padding: 18px 20px;
+  border-radius: 12px;
+}
 .search-box {
   width: 100%;
   max-width: 560px;

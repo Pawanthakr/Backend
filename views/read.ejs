@@ -29,8 +29,9 @@
           <li><a href="/contact">Contact</a></li>
         </ul>
 
-        <div class="profile">
-          <p>Pawan Thakre</p>
+       <div class="nav-buttons">
+          <a href="/login" class="login-btn">Login</a>
+          <a href="/signup" class="signup-btn">Sign Up</a>
         </div>
       </nav>
 
@@ -54,7 +55,7 @@
       <div class=" flex flex-wrap gap-3 ">
         <% events.forEach(function (event) { %>
 
-          <div class="w-80 bg-slate-900 rounded-2xl overflow-hidden shadow-xl m-3 font-sans border border-slate-800">
+          <div class="w-120 bg-slate-900 rounded-2xl overflow-hidden shadow-xl m-3 font-sans border border-slate-800">
                  <div class="w-full h-48 bg-slate-800">
                      <img class="w-full h-full object-cover" src="<%= event.image %>" alt="Event Image">
                  </div>
