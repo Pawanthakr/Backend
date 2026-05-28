@@ -5,7 +5,7 @@ const { name } = require("ejs");
 const mongoose = require("mongoose");
 mongoose.connect('mongodb://localhost:27017/mongodbpractice');
 
-const userSchema = mongoose.Schema({
+const eventSchema = mongoose.Schema({
     eventtitle: String,
     description: String,
     date: String,
@@ -16,5 +16,11 @@ const userSchema = mongoose.Schema({
     contact: Number
 })
 
+const userSchema = mongoose.Schema({
+    fullname: String,
+    email: String,
+    password: String,
+})
 
-module.exports = mongoose.model("event", userSchema);
+module.exports = mongoose.model("event", eventSchema);
+module.exports = mongoose.model("user", userSchema);

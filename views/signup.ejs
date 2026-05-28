@@ -21,44 +21,44 @@
       <h1>Create Account</h1>
 
       <p>Sign up to get started</p>
+      <form action="/signup" method="post">
+        <div class="input-group">
+          <label>Full Name</label>
 
-      <div class="input-group">
-        <label>Full Name</label>
+          <input
+            type="text"
+            class="input-box"
+            id="fullname"
+            name="fullname"
+            placeholder="Enter your full name"
+          />
+        </div>
 
-        <input
-          type="text"
-          class="input-box"
-          placeholder="Enter your full name"
-        />
-      </div>
+        <div class="input-group">
+          <label>Email</label>
 
-      <div class="input-group">
-        <label>Email</label>
+          <input
+            type="email"
+            class="input-box"
+            id="email"
+            name="email"
+            placeholder="Enter your email"
+          />
+        </div>
 
-        <input type="email" class="input-box" placeholder="Enter your email" />
-      </div>
+        <div class="input-group">
+          <label>Password</label>
 
-      <div class="input-group">
-        <label>Password</label>
-
-        <input
-          type="password"
-          class="input-box"
-          placeholder="Create a password"
-        />
-      </div>
-
-      <div class="input-group">
-        <label>Confirm Password</label>
-
-        <input
-          type="password"
-          class="input-box"
-          placeholder="Confirm your password"
-        />
-      </div>
-
-      <button class="signup-btn">Sign Up</button>
+          <input
+            type="password"
+            class="input-box"
+            id="password"
+            name="password"
+            placeholder="Create a password"
+          />
+        </div>
+        <button class="signup-btn">Sign Up</button>
+      </form>
 
       <div class="login-text">
         Already have an account?

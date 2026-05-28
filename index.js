@@ -1,7 +1,8 @@
 const express = require("express");
 const app = express();
 const Path = require("path");
-const userModule = require("./models/usermodel");
+const eventModule = require("./models/eventmodel");
+const userModule = require("./models/eventmodel");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -14,7 +15,7 @@ app.get("/", function (req, res) {
 });
 
 app.get("/read", async (req, res) => {
-    let events = await userModule.find();
+    let events = await eventModule.find();
     res.render("read", { events });
 });
 app.get("/add", async (req, res) => {
@@ -34,24 +35,24 @@ app.get("/login", async (req, res) => {
 });
 
 app.get("/edit/:eventid", async (req, res) => {
-    let event = await userModule.findOne({ _id: req.params.eventid });
+    let event = await eventModule.findOne({ _id: req.params.eventid });
     res.render("edit", { event: event });
 });
 
 app.post("/update/:eventid", async (req, res) => {
     let { eventtitle, location, image, date, time, category, contact, description } = req.body;
-    let event = await userModule.findOneAndUpdate({ _id: req.params.eventid }, { eventtitle, location, image, date, time, category, contact, description }, { new: true });
+    let event = await eventModule.findOneAndUpdate({ _id: req.params.eventid }, { eventtitle, location, image, date, time, category, contact, description }, { new: true });
     res.redirect("/read");
 });
 
 app.get("/delete/:id", async (req, res) => {
-    let events = await userModule.findOneAndDelete({ _id: req.params.id });
+    let events = await eventModule.findOneAndDelete({ _id: req.params.id });
     res.redirect("/read");
 })
 
 app.post("/create", async (req, res) => {
     let { eventtitle, location, image, date, time, category, contact, description } = req.body;
-    let createdevent = await userModule.create({
+    let createdevent = await eventModule.create({
         eventtitle,
         location,
         image,
@@ -61,8 +62,17 @@ app.post("/create", async (req, res) => {
         contact,
         description
     });
-    console.log(req.body);
     res.redirect("/read");
+})
+
+app.post("/signup", async (req, res) => {
+    let { fullname, email, password } = req.body;
+    let createduser = await userModule.create({
+        fullname,
+        email,
+        password,
+    });
+    res.redirect("/");
 })
 
 app.listen(3000);
