@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const Path = require("path");
 const eventModule = require("./models/eventmodel");
-const userModule = require("./models/eventmodel");
+const userModule = require("./models/usermodel");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -48,10 +48,22 @@ app.post("/update/:eventid", async (req, res) => {
 app.get("/delete/:id", async (req, res) => {
     let events = await eventModule.findOneAndDelete({ _id: req.params.id });
     res.redirect("/read");
-})
+});
 
 app.post("/create", async (req, res) => {
     let { eventtitle, location, image, date, time, category, contact, description } = req.body;
+    if (
+        !eventtitle ||
+        !location ||
+        !image ||
+        !date ||
+        !time ||
+        !category ||
+        !contact ||
+        !description
+    ) {
+        return res.send('<script>alert("All fields are required"); window.history.back();</script>');
+    }
     let createdevent = await eventModule.create({
         eventtitle,
         location,
@@ -63,16 +75,27 @@ app.post("/create", async (req, res) => {
         description
     });
     res.redirect("/read");
-})
+});
 
 app.post("/signup", async (req, res) => {
     let { fullname, email, password } = req.body;
+    if (
+        !fullname ||
+        !email ||
+        !password
+    ) {
+        return res.send('<script>alert("All fields are required"); window.history.back();</script>');
+    }
     let createduser = await userModule.create({
         fullname,
         email,
         password,
     });
     res.redirect("/");
-})
+});
 
-app.listen(3000);
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});

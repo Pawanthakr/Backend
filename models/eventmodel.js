@@ -16,11 +16,5 @@ const eventSchema = mongoose.Schema({
     contact: Number
 })
 
-const userSchema = mongoose.Schema({
-    fullname: String,
-    email: String,
-    password: String,
-})
 
 module.exports = mongoose.model("event", eventSchema);
-module.exports = mongoose.model("user", userSchema);
