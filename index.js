@@ -47,18 +47,18 @@ app.get("/login", async (req, res) => {
 });
 
 app.get("/edit/:eventid", async (req, res) => {
-    let event = await eventModule.findOne({ _id: req.params.eventid });
+    let event = await eventModel.findOne({ _id: req.params.eventid });
     res.render("edit", { event: event });
 });
 
 app.post("/update/:eventid", async (req, res) => {
     let { eventtitle, location, image, date, time, category, contact, description } = req.body;
-    let event = await eventModule.findOneAndUpdate({ _id: req.params.eventid }, { eventtitle, location, image, date, time, category, contact, description }, { new: true });
+    let event = await eventModel.findOneAndUpdate({ _id: req.params.eventid }, { eventtitle, location, image, date, time, category, contact, description }, { new: true });
     res.redirect("/read");
 });
 
 app.get("/delete/:id", async (req, res) => {
-    let events = await eventModule.findOneAndDelete({ _id: req.params.id });
+    let events = await eventModel.findOneAndDelete({ _id: req.params.id });
     res.redirect("/read");
 });
 
@@ -76,7 +76,7 @@ app.post("/create", async (req, res) => {
     ) {
         return res.send('<script>alert("All fields are required"); window.history.back();</script>');
     }
-    let createdevent = await eventModule.create({
+    let createdevent = await eventModel.create({
         eventtitle,
         location,
         image,
@@ -98,7 +98,7 @@ app.post("/signup", async (req, res) => {
     ) {
         return res.send('<script>alert("All fields are required"); window.history.back();</script>');
     }
-    let createduser = await userModule.create({
+    let createduser = await userModel.create({
         fullname,
         email,
         password,
