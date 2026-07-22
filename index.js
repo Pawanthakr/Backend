@@ -8,8 +8,8 @@ mongoose.connect(process.env.MONGODB_URI)
 const express = require("express");
 const app = express();
 const Path = require("path");
-const eventModule = require("./models/eventmodel");
-const userModule = require("./models/usermodel");
+const eventModel = require("./models/eventmodel");
+const userModel = require("./models/usermodel");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -22,8 +22,13 @@ app.get("/", function (req, res) {
 });
 
 app.get("/read", async (req, res) => {
-    let events = await eventModel.find();
-    res.render("read", { events });
+    try {
+        let events = await eventModel.find();
+        res.render("read", { events });
+    } catch (err) {
+        console.error("Database Query Error:", err);
+        res.status(500).send("Database Error: " + err.message);
+    }
 });
 app.get("/add", async (req, res) => {
     res.render("add");
