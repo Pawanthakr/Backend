@@ -1,6 +1,9 @@
 const { name } = require("ejs");
 const mongoose = require("mongoose");
-mongoose.connect('mongodb://localhost:27017/mongodbpractice');
+
+mongoose.connect(process.env.MONGODB_URI)
+    .then(() => console.log("MongoDB Connected"))
+    .catch(err => console.log(err));
 
 const userSchema = mongoose.Schema({
     fullname: String,
