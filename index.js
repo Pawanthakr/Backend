@@ -22,7 +22,7 @@ app.get("/", function (req, res) {
 });
 
 app.get("/read", async (req, res) => {
-    let events = await eventModule.find();
+    let events = await eventModel.find();
     res.render("read", { events });
 });
 app.get("/add", async (req, res) => {
