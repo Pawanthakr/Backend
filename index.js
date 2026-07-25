@@ -1,30 +1,46 @@
-require("dotenv").config();
+/*require("dotenv").config();
 const mongoose = require("mongoose");
 
 mongoose.connect(process.env.MONGODB_URI)
     .then(() => console.log("MongoDB Connected"))
-    .catch(err => console.log(err));
+    .catch(err => console.log(err));*/
 
 const express = require("express");
 const app = express();
 const Path = require("path");
 const eventModel = require("./models/eventmodel");
 const userModel = require("./models/usermodel");
+const session = require("express-session");
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 app.use(express.static(Path.join(__dirname, "public")));
+app.use(session({
+    secret: "mysecret",
+    resave: false,
+    saveUninitialized: false
+}));
+app.use((req, res, next) => {
+    res.locals.user = req.session.user;
+    next();
+});
 
 
 app.get("/", function (req, res) {
-    res.render("index");
+    res.render("index", {
+        user: req.session.user
+    });
 });
 
 app.get("/read", async (req, res) => {
     try {
         let events = await eventModel.find();
-        res.render("read", { events });
+        res.render("read", {
+            events,
+            user: req.session.user
+        });
     } catch (err) {
         console.error("Database Query Error:", err);
         res.status(500).send("Database Error: " + err.message);
@@ -49,6 +65,22 @@ app.get("/login", async (req, res) => {
 app.get("/edit/:eventid", async (req, res) => {
     let event = await eventModel.findOne({ _id: req.params.eventid });
     res.render("edit", { event: event });
+});
+
+app.get("/logout", (req, res) => {
+    req.session.destroy();
+    res.redirect("/");
+});
+
+app.post("/login", async (req, res) => {
+    const user = await userModel.findOne({ email: req.body.email });
+
+    if (user) {
+        req.session.user = user;
+        res.redirect("/");
+    } else {
+        res.send('<script>alert("Invalid email or password"); window.history.back();</script>');
+    }
 });
 
 app.post("/update/:eventid", async (req, res) => {
@@ -98,16 +130,23 @@ app.post("/signup", async (req, res) => {
     ) {
         return res.send('<script>alert("All fields are required"); window.history.back();</script>');
     }
-    let createduser = await userModel.create({
+    let user = await userModel.create({
         fullname,
         email,
         password,
     });
+    if (user) {
+        return res.send('<script>alert("User already exists please login"); window.location.href="/";</script>');
+
+    }
+    req.session.user = user;
     res.redirect("/");
 });
 
-const PORT = process.env.PORT || 3000;
+app.listen(3000);
 
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
+// const PORT = process.env.PORT || 3000;
+
+// app.listen(PORT, () => {
+//     console.log(`Server running on port ${PORT}`);
+// });

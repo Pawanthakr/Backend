@@ -27,10 +27,15 @@
         <li><a href="/contact">Contact</a></li>
       </ul>
 
-      <div class="nav-buttons">
-        <a href="/login" class="login-btn">Login</a>
-        <a href="/signup" class="signup-btn">Sign Up</a>
-      </div>
+       <div class="nav-buttons">
+          <% if(user){ %>
+            <span class="username">Hello, <%= user.fullname %></span>
+            <a href="/logout" class="logout-btn">Logout</a>
+          <% } else { %>
+             <a href="/login" class="login-btn">Login</a>
+             <a href="/signup" class="signup-btn">Sign Up</a>
+          <% } %>
+        </div>
     </nav>
     <div class="p-10 w-full h-full text-white">
       <div><a href="/read">Read Events</a></div>

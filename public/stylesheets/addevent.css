@@ -210,7 +210,8 @@ input[type="text"] {
   box-shadow: 0 10px 25px rgba(124, 58, 237, 0.35);
 }
 .login-btn,
-.signup-btn {
+.signup-btn,
+.logout-btn {
   padding: 12px 24px;
   border-radius: 12px;
   border: none;
@@ -219,6 +220,18 @@ input[type="text"] {
   transition: 0.3s;
   text-decoration: none;
 }
+.username {
+  padding: 12px 24px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: 800;
+  transition: 0.3s;
+  text-decoration: none;
+  background: whitesmoke;
+  border: 1px solid whitesmoke;
+  color: #000;
+}
 
 .login-btn {
   background-color: white;
@@ -226,13 +239,16 @@ input[type="text"] {
   color: #7c3aed;
 }
 
-.signup-btn {
+.signup-btn,
+.logout-btn {
   background: linear-gradient(to right, #7c3aed, #9333ea);
   color: white;
 }
 
 .login-btn:hover,
-.signup-btn:hover {
+.signup-btn:hover,
+.logout-btn:hover,
+.username:hover {
   transform: translateY(-2px);
 }
 option {

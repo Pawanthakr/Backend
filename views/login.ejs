@@ -23,36 +23,38 @@
       <p>Login to your account</p>
 
       <!-- EMAIL -->
+      <form action="/login" method="post">
+        <div class="input-group">
+          <label>Email</label>
 
-      <div class="input-group">
-        <label>Full Name</label>
-
-        <input
-          type="text"
-          class="input-box"
-          placeholder="Enter your full name"
-        />
-      </div>
-
-      <!-- PASSWORD -->
-
-      <div class="input-group">
-        <div class="password-row">
-          <label>Password</label>
-
-          <a href="#" class="forgot"> Forgot Password? </a>
+          <input
+            type="email"
+            class="input-box"
+            placeholder="Enter your email"
+            name="email"
+          />
         </div>
 
-        <input
-          type="password"
-          class="input-box"
-          placeholder="Enter your password"
-        />
-      </div>
+        <!-- PASSWORD -->
 
-      <!-- BUTTON -->
+        <div class="input-group">
+          <div class="password-row">
+            <label>Password</label>
 
-      <button class="login-btn">Login</button>
+            <a href="#" class="forgot"> Forgot Password? </a>
+          </div>
+
+          <input
+            type="password"
+            class="input-box"
+            placeholder="Enter your password"
+          />
+        </div>
+
+        <!-- BUTTON -->
+
+        <button class="login-btn">Login</button>
+      </form>
 
       <!-- SIGNUP -->
 

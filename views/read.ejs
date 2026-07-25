@@ -30,8 +30,13 @@
         </ul>
 
        <div class="nav-buttons">
-          <a href="/login" class="login-btn">Login</a>
-          <a href="/signup" class="signup-btn">Sign Up</a>
+          <% if(user){ %>
+            <span class="username">Hello, <%= user.fullname %></span>
+            <a href="/logout" class="logout-btn">Logout</a>
+          <% } else { %>
+             <a href="/login" class="login-btn">Login</a>
+             <a href="/signup" class="signup-btn">Sign Up</a>
+          <% } %>
         </div>
       </nav>
 
