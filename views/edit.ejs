@@ -12,7 +12,7 @@
       <div class="logo">
         <div class="logo-box">🎟</div>
 
-        Zen<span>Vibe</span>
+        Nex<span>Event</span>
       </div>
 
       <ul class="nav-links">
@@ -20,7 +20,9 @@
 
         <li><a href="/read">Events</a></li>
 
-        <li><a href="/add">Add Event</a></li>
+        <% if(user){ %>
+          <li><a href="/add">Add Event</a></li> 
+        <% } %>
 
         <li><a href="/about">About</a></li>
 

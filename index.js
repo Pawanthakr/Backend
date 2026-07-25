@@ -35,18 +35,21 @@ app.get("/", function (req, res) {
 });
 
 app.get("/read", async (req, res) => {
-    try {
-        let events = await eventModel.find();
-        res.render("read", {
-            events,
-            user: req.session.user
-        });
-    } catch (err) {
-        console.error("Database Query Error:", err);
-        res.status(500).send("Database Error: " + err.message);
-    }
+    let events = await eventModel.find();
+    res.render("read", {
+        events,
+        user: req.session.user
+    });
 });
-app.get("/add", async (req, res) => {
+
+function isLoggedIn(req, res, next) {
+    if (!req.session.user) {
+        return res.redirect("/login");
+    }
+    next();
+}
+
+app.get("/add", isLoggedIn, async (req, res) => {
     res.render("add");
 });
 app.get("/about", async (req, res) => {
@@ -73,14 +76,20 @@ app.get("/logout", (req, res) => {
 });
 
 app.post("/login", async (req, res) => {
-    const user = await userModel.findOne({ email: req.body.email });
+    let { email, password } = req.body;
+    let user = await userModel.findOne({ email });
+    console.log("User found:", user);
 
-    if (user) {
-        req.session.user = user;
-        res.redirect("/");
-    } else {
-        res.send('<script>alert("Invalid email or password"); window.history.back();</script>');
+    if (!user || user.password !== password) {
+        return res.send(`
+            <script>
+                alert("Invalid email or password");
+                window.history.back();
+            </script>
+        `);
     }
+    req.session.user = user;
+    res.redirect("/");
 });
 
 app.post("/update/:eventid", async (req, res) => {
@@ -94,7 +103,7 @@ app.get("/delete/:id", async (req, res) => {
     res.redirect("/read");
 });
 
-app.post("/create", async (req, res) => {
+app.post("/create", isLoggedIn, async (req, res) => {
     let { eventtitle, location, image, date, time, category, contact, description } = req.body;
     if (
         !eventtitle ||
@@ -116,7 +125,8 @@ app.post("/create", async (req, res) => {
         time,
         category,
         contact,
-        description
+        description,
+        creator: req.session.user.fullname
     });
     res.redirect("/read");
 });
@@ -130,15 +140,17 @@ app.post("/signup", async (req, res) => {
     ) {
         return res.send('<script>alert("All fields are required"); window.history.back();</script>');
     }
+    let existingUser = await userModel.findOne({ email });
+
+    if (existingUser) {
+        return res.send('<script>alert("User already exists. Please login."); window.location.href="/login";</script>');
+    }
+
     let user = await userModel.create({
         fullname,
         email,
         password,
     });
-    if (user) {
-        return res.send('<script>alert("User already exists please login"); window.location.href="/";</script>');
-
-    }
     req.session.user = user;
     res.redirect("/");
 });
