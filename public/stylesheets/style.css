@@ -18,9 +18,8 @@ body {
   position: absolute;
   overflow: hidden;
   background:
-    linear-gradient(to right, rgba(5, 8, 22, 0.95) 40%, rgba(5, 8, 22, 0.3)),
-    url("https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=1600&auto=format&fit=crop");
-
+    linear-gradient(to right, rgba(5, 8, 22, 0.95) 20%, rgba(5, 8, 22, 0.3)),
+    url("https://images.pexels.com/photos/952670/pexels-photo-952670.jpeg");
   background-size: cover;
   background-position: center;
 }
