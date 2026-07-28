@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ZenVibe</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
-    <link rel="stylesheet" href="/stylesheets/addevent.css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   </head>
   <body>
@@ -21,15 +20,11 @@
 
         <ul class="nav-links">
           <li><a href="/">Home</a></li>
-
-          <li><a href="/read">Events</a></li>
-
           <% if(user){ %>
             <li><a href="/add">Add Event</a></li>
           <% } %>
-
+          <li><a href="/read">Events</a></li>
           <li><a href="/about">About</a></li>
-
           <li><a href="/contact">Contact</a></li>
         </ul>
 
@@ -54,6 +49,11 @@
           around you.
         </p>
 
+        <div class="hero-btns">
+            <a href="/read" class="btn primary-btn">Explore Events</a>
+            <a href="/add" class="btn secondary-btn">Create Event</a>
+        </div>
+
         <!-- SEARCH -->
 
         <div class="search-box">
@@ -62,6 +62,13 @@
           <button class="search">Search</button>
         </div>
 
+        <div class="category-chips">
+          <span class="chip">🎵 Music</span>
+          <span class="chip">🎨 Tech</span>
+          <span class="chip">🎮 Gaming</span>
+          <span class="chip">🍕 Food & Drinks</span>
+          <span class="chip">⚽ Sports</span>
+        </div>
         <!-- STATS -->
 
         <div class="stats">

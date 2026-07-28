@@ -19,27 +19,13 @@
 
         <ul class="nav-links">
           <li><a href="/">Home</a></li>
-
-          <li><a href="/read">Events</a></li>
-
           <% if(user){ %>
             <li><a href="/add">Add Event</a></li>
           <% } %>
-
+          <li><a href="/read">Events</a></li>
           <li><a href="/about">About</a></li>
-
           <li><a href="/contact">Contact</a></li>
         </ul>
-
-       <div class="nav-buttons">
-          <% if(user){ %>
-            <span class="username">Hello, <%= user.fullname %></span>
-            <a href="/logout" class="logout-btn">Logout</a>
-          <% } else { %>
-             <a href="/login" class="login-btn">Login</a>
-             <a href="/signup" class="signup-btn">Sign Up</a>
-          <% } %>
-        </div>
       </nav>
 
       <!-- TITLE -->
@@ -59,10 +45,11 @@
           placeholder="🔍 Search events..."
            />
        </div>
-      <div class="flex flex-wrap gap-3">
+      <div class="flex flex-wrap gap-3 ">
   <% if (typeof events !== "undefined" && events.length > 0) { %>
     <% events.forEach(function(event) { %>
-      <div class="w-120 bg-slate-900 rounded-2xl overflow-hidden shadow-xl m-3 font-sans border border-slate-800">
+      <div id="event-card"
+      class="w-120 bg-slate-900 rounded-2xl overflow-hidden shadow-xl m-3 font-sans border border-slate-800">
         <div class="w-full h-48 bg-slate-800">
           <img class="w-full h-full object-cover" src="<%= event.image %>" alt="Event Image">
         </div>

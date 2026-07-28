@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>About - EventFinder</title>
-
     <link rel="stylesheet" href="/stylesheets/about.css" />
   </head>
   <body>
@@ -21,8 +20,10 @@
 
         <ul class="nav-links">
           <li><a href="/">Home</a></li>
+          <% if(user){ %>
+            <li><a href="/add">Add Event</a></li> 
+          <% } %>
           <li><a href="/read">Events</a></li>
-          <li><a href="/add">Add Event</a></li>
           <li><a href="/about">About</a></li>
           <li><a href="/contact">Contact</a></li>
         </ul>
@@ -48,7 +49,7 @@
 
         <div class="hero-image">
           <img
-            src="https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=1200&auto=format&fit=crop"
+            src="/image/event.avif"
           />
         </div>
       </div>

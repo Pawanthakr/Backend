@@ -35,7 +35,7 @@ app.get("/", function (req, res) {
 });
 
 app.get("/read", async (req, res) => {
-    let events = await eventModel.find();
+    let events = await eventModel.find().lean();
     res.render("read", {
         events,
         user: req.session.user
