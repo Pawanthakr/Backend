@@ -4,8 +4,6 @@
 // const { name } = require("ejs");
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb://localhost:27017/eventfinder");
-
 const eventSchema = new mongoose.Schema({
     eventtitle: String,
     description: String,
